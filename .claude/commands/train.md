@@ -128,7 +128,7 @@ Pause with AskUserQuestion: "How are you feeling? Ready for the last module -- s
 
 ## Module 5: Your Context OS (10 mins)
 
-**Teach the concept, show the example, then set them up.**
+**Teach the concept, show the example, then explain the architecture that makes it compound.**
 
 Say: "Skills tell Claude HOW to do things. A Context OS tells Claude WHAT it knows. It's a structured knowledge system that gets smarter every time you feed it information."
 
@@ -142,15 +142,31 @@ Read examples/sample-knowledge-node.md and walk through:
 Say: "In a real Context OS, you'd have dozens or hundreds of these nodes. Each one links to others. When you ask Claude to write something -- a proposal, an email, a report -- it can pull from this knowledge graph instead of making things up. That's the difference between generic AI output and output grounded in your actual knowledge."
 
 **Explain the three layers:**
-1. **Layer 1 -- Atomic Knowledge**: Individual facts, insights, frameworks (the nodes)
-2. **Layer 2 -- Operational Docs**: Documents that compose Layer 1 (strategies, processes, personas)
-3. **Layer 3 -- Outputs**: Content you produce, grounded in Layers 1 and 2
+1. **Layer 1 -- Atomic Knowledge** (`knowledge_base/`): Individual facts, insights, frameworks (the nodes). Organized by domain -- technical, business, methodology. Each node has structured frontmatter, evidence tags, and wiki-links.
+2. **Layer 2 -- Operational Docs** (`00_foundation/`): Strategic documents that compose Layer 1 -- positioning, messaging, personas, synthesis docs. These reference atomic concepts but never redefine them.
+3. **Layer 3 -- Outputs** (`drafts/`): Content you produce, grounded in Layers 1 and 2. Each output links back to the knowledge nodes that informed it via `source_nodes`.
 
 "You feed raw content in (transcripts, notes, documents), the system extracts knowledge nodes, links them together, and then every skill you run can draw from that accumulated knowledge."
 
+**Explain the architecture patterns that make it compound:**
+
+Read examples/context-os-architecture.md and walk through the five key patterns:
+
+1. **CLAUDE.md as the navigation guide**: "This is the first thing Claude reads in every session. It tells Claude what this project is, where to find things, and what rules to follow. The more you refine it, the smarter every session starts."
+
+2. **Ingestion as the flywheel**: "You don't manually create knowledge nodes. You feed raw content -- meeting transcripts, documents, notes -- into an ingestion command, and it extracts structured nodes automatically. Each node gets frontmatter, evidence tags, and links to related concepts."
+
+3. **Status lifecycle**: "New concepts start as 'emergent' -- unproven. After they show up in multiple sources (2+ citations), they get promoted to 'canonical'. This prevents premature generalization. What survives is what's real."
+
+4. **Evidence attribution**: "Every claim in your knowledge base gets tagged: [VERIFIED: source] means you have direct evidence. [INFERRED: logic] means you deduced it. [UNVERIFIABLE] means you can't confirm. This keeps the AI honest -- it knows what it actually knows vs. what it's guessing."
+
+5. **Skills read the KB**: "This is where it all connects. Your skills don't work in isolation -- they read from the knowledge base. A skill that writes a proposal pulls from real customer quotes, real competitive data, real case studies. The more knowledge you ingest, the better every skill performs."
+
+Say: "This is why it compounds. Every transcript you ingest, every note you process, every document you feed in -- it all becomes knowledge that every skill can draw from. After a few weeks, the AI knows more about your domain than you could ever fit in a prompt."
+
 **The quickstart exercise:**
 
-Say: "There's a ready-made quickstart that sets all of this up for you in 10 minutes. Let's do it now if we have time, or I'll walk you through what it does."
+Say: "There's a ready-made quickstart that sets all of this up for you in 10 minutes. It creates the directory structure, CLAUDE.md, and ingestion pipeline. Let's do it now if we have time, or I'll walk you through what it does."
 
 Use AskUserQuestion to ask: "Want to set up your own Context OS right now? We'd clone a quickstart repo and run through the guided setup. Takes about 10 minutes. Or I can walk you through what it does and you can set it up later."
 
@@ -161,10 +177,12 @@ git clone https://github.com/jacob-dietle/gtm-context-os-quickstart
 cd gtm-context-os-quickstart
 claude
 ```
-Then tell them to run `/quickstart` in that new Claude session. Explain: "It'll ask what your system is for -- answer with your domain. It creates the directory structure, CLAUDE.md, taxonomy, and ontology. Then it processes your first piece of content."
+Then tell them to run `/quickstart` in that new Claude session. Explain: "It'll ask what your system is for -- answer with your domain ([their domain from Module 1]). It creates the directory structure, CLAUDE.md navigation guide, and ingestion pipeline. Then it processes your first piece of content into a structured knowledge node."
+
+Walk them through what happens: "The quickstart will create `knowledge_base/` folders for your domains, an `00_foundation/` layer for operational docs, and a CLAUDE.md that tells Claude how to navigate your system. From there, you feed it content and the knowledge graph grows."
 
 **If they want to do it later:**
-Walk through what the quickstart does conceptually: creates a knowledge_base/ directory, a CLAUDE.md navigation guide, a taxonomy of blessed tags, and an ontology of how concepts relate. Then you start ingesting content and the knowledge graph grows.
+Walk through what the quickstart creates, using the architecture doc as reference. Emphasize: "The quickstart handles all the scaffolding. Your job is to feed it content and build skills that read from it. That's the cycle: ingest knowledge, build skills, produce grounded output. Repeat."
 
 ---
 
