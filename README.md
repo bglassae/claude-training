@@ -1,25 +1,23 @@
 # Claude Code Training
 
-Interactive training for Claude Code. Takes about 30 minutes.
+Interactive training for Claude Code that builds your first Context OS as you learn. Takes about 30 minutes.
 
-You'll learn:
-- Why Claude Code (and how it compares to other AI tools)
-- The "Plan First" framework for getting better results
-- The "Skill Ladder" for automating your repetitive work
-- How to set up a Context OS that gets smarter over time
-
-By the end, you'll have written your first skill and have a plan to build your own AI-powered workflow.
+By the end, you won't just understand Claude Code -- you'll have a working knowledge system with:
+- A CLAUDE.md that knows about you and your work
+- Your first skill (codified from your own repetitive process)
+- A knowledge graph with taxonomy, ontology, and ingestion pipeline
+- Commands to ingest content, check health, and visualize your graph
 
 ## Setup
 
 1. [Install Claude Code](https://claude.ai/download) if you haven't already
 2. Clone this repo:
    ```bash
-   git clone https://github.com/bglassae/claude-code-training
+   git clone https://github.com/bglassae/claude-training
    ```
 3. Open it in Claude Code:
    ```bash
-   cd claude-code-training
+   cd claude-training
    claude
    ```
 4. Run the training:
@@ -29,22 +27,30 @@ By the end, you'll have written your first skill and have a plan to build your o
 
 Claude will guide you through everything from there.
 
-## What You'll Need
+## What You'll Learn
 
-- Claude Code installed and working
-- About 30 minutes
-- A willingness to think about which parts of your work are repetitive
+- **Plan First** -- the most important habit for working with AI
+- **The Skill Ladder** -- how to evolve manual work into automated systems
+- **Context OS** -- structured knowledge that compounds over time
+
+## Commands
+
+| Command | Purpose |
+|---------|---------|
+| `/train` | Interactive training walkthrough (start here) |
+| `/ingest` | Process raw content into structured knowledge nodes |
+| `/graph-health` | Check the health of your knowledge graph |
+| `/visualize` | Generate an interactive HTML visualization of your graph |
 
 ## After Training
 
-Your homework:
-1. Set up your own Context OS using the [quickstart](https://github.com/jacob-dietle/gtm-context-os-quickstart)
-2. Customize CLAUDE.md for your domain
-3. Ingest 3 pieces of your own content
-4. Build one more skill
+Your next steps:
+1. Ingest 3 pieces of your own content (`/ingest`)
+2. Run `/visualize` to watch your graph grow
+3. Write one more skill for another repetitive process
+4. Run `/graph-health` after a week to check system health
 
 ## Resources
 
-- [Context OS Quickstart](https://github.com/jacob-dietle/gtm-context-os-quickstart) -- Set up your own knowledge system in 10 minutes
 - [CareerOps](https://github.com/santifer/career-ops) -- Example of a full AI-powered workflow (job search automation)
 - [Claude Code Best Practices](https://github.com/shanraisshan/claude-code-best-practice) -- Tips from the Claude Code creator
