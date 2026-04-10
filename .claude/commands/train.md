@@ -290,25 +290,51 @@ Connect to their work: "For you, this means [their skill from Module 4] would dr
 
 Pause: "Ready to move on?" / "I have a question first"
 
-**Step 4: First ingestion**
+**Step 4: First ingestion -- the moment it clicks**
 
-Say: "Let's get some knowledge into your system. Do you have a piece of content you'd like to ingest right now? It could be anything -- a document, some notes, a transcript. You can paste it or give me a file path."
+This is the most important step. The trainee needs to see real knowledge get extracted from their own content.
+
+Say: "Now comes the part where the system starts learning about YOUR work. You have a `raw_context/` folder -- that's your drop zone. Anything you put in there, Claude can process into structured knowledge."
+
+Explain: "Think about the 3-5 most important documents that define what you do. Things like:"
+- Connect to their domain with specific examples: "For you as a [their role], that might be [tailored examples -- e.g. 'a job description you're working with, your company's about page, a process doc you follow, notes from a recent meeting, a client brief']."
+- "The more context you give the system now, the smarter it becomes immediately. This is the flywheel starting."
 
 Use AskUserQuestion:
-- "Yes, I have something to ingest"
-- "Not right now -- use the example node instead"
+- "Yes, I have documents I can add right now"
+- "I can paste some content instead"
+- "Not right now -- use the example node"
 
-**If they have content:** Run /ingest on their content. Walk them through what happens -- the concepts extracted, the nodes created, the relationships identified.
+**If they have documents:**
+Guide them to copy or save 3-5 files into the `raw_context/` folder. Say: "Drop them in raw_context/ -- they can be any format: .md, .txt, .pdf, whatever you have. I'll wait."
 
-**If they don't have content:** Copy the example node from examples/sample-knowledge-node.md to knowledge_base/business/ as a starting point. Say: "I've added the example node to your knowledge base so you can see how the system works. Replace this with your own content when you're ready."
+Once they confirm the files are there, say: "Now watch this." Run /ingest, pointing it at the raw_context/ folder. It will process all the files in one pass.
+
+As it runs, narrate what's happening: "It's reading each document, identifying the key concepts, figuring out what domain they belong to, creating structured nodes with frontmatter and evidence tags, and linking related concepts together with wiki-links."
+
+After ingestion completes, walk them through the results: "Look -- from [N] documents, the system extracted [N] knowledge nodes. Each one is structured, tagged, and linked. Your knowledge graph just went from empty to having real substance."
+
+Ask if they'd like to open one of the newly created nodes to see how their content was structured.
+
+**If they paste content:**
+Accept their pasted content and run /ingest on it. Same narration as above.
+
+**If they don't have content:**
+Copy the example node from examples/sample-knowledge-node.md to knowledge_base/business/ as a starting point. Say: "I've added the example node so you can see the system in action. But the real magic happens when you ingest YOUR content. After this training, your first homework is to drop 3-5 documents into raw_context/ and run /ingest."
+
+Pause: "Ready to move on?" / "I have a question first"
 
 **Step 5: Visualize the graph**
 
-Say: "Now let's see your knowledge graph. Even with just one or two nodes, this shows you what it looks like -- and how it grows over time."
+Say: "Now let's see what your knowledge graph looks like."
 
 Run /visualize to generate the HTML graph and open it in the browser.
 
-Say: "This is your knowledge graph. Right now it's small -- but every time you run /ingest, new nodes appear. Every time you add relationships, new connections form. Run /visualize again after adding more content and watch it grow."
+**If they ingested real content**, this will be impressive -- multiple nodes with connections between them. Say: "This is your knowledge graph -- built from your own documents in the last few minutes. Each dot is a concept. Each line is a relationship. The colors show domains. And this is just from [N] documents. Imagine what it looks like after a month of feeding it content."
+
+**If they used the example node**, it'll be small but still shows the concept. Say: "Right now it's just one node. But when you ingest your own content, you'll see this fill up with connected concepts from your actual work."
+
+Say: "Every time you run /ingest, new nodes appear. Every time you run /visualize, you see the graph grow. That's the compounding effect -- visible."
 
 Pause: "Ready to move on?" / "I have a question first"
 
